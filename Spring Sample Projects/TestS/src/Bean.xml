@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context = "http://www.springframework.org/schema/context"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+   
+      <context:annotation-config/>
+
+   <bean id = "testApp" class = "com.mytest.app.TestAppPojo" scope = "singleton">
+      <property name = "myMsg" value = "Hello Rishi!!!"/>
+   </bean>
+   
+    <bean id = "testProtoTypeApp" class = "com.mytest.app.TestPrototypePojo" scope = "prototype"
+    init-method = "init" destroy-method="destroy">
+   </bean>
+   
+    <bean id = "testParent" class = "com.mytest.app.TestParent" >
+          <property name = "myMsg1" value = "Hello World!"/>
+           <property name = "parentMsg" value = "This is parent Msg"/>   
+   </bean>
+   
+     <bean id = "testChild" class = "com.mytest.app.TestChild"  parent="testParent">
+      <property name = "myMsg1" value = "Hello Rishi"/>
+         <property name = "myMsg2" value = "You are in Child Bean"/>
+   
+   </bean>
+   
+   <bean class = "com.mytest.app.InitTestPrototypePojo" />
+   <bean id="semBook"  class = "com.mytest.app.SemBooks">
+		   <constructor-arg ref="javaBook"/>
+             <property name = "books" value = "Sem 1 Book"/>
+   </bean>
+   
+   <bean id="javaBook"  class = "com.mytest.app.JavaBook">
+             <property name = "myJavaBook" value = "Java Book"/>
+   </bean>
+
+
+  <bean id="empDetails"  class = "com.mytest.app.EmployeeDetails">
+             <property name = "name" value = "Rishi Pomal"/>
+             <property name = "dep" value = "IT"/>
+             
+   </bean>
+   
+   <bean id="empSalary"  class = "com.mytest.app.EmployeeSalary">
+             <property name = "salary" value ="15000" />
+   </bean>
+   
+   <bean id="empSalary1"  class = "com.mytest.app.EmployeeSalary">
+             <property name = "salary" value ="20000" />
+   </bean>
+   
+   <bean id="mylib"  class = "com.mytest.app.Libary">
+             <property name = "books" >
+             	<list>
+             	<value>Contra</value>
+             	 <value>Mario</value>
+             	 <value>RoadFighter</value>
+             	  <value>Tank</value> 	
+             	</list>
+             </property>
+   </bean>
+   
+     <bean id="solarSys"  class = "com.mytest.app.SolarSystem" autowire="byType">
+             <property name = "planets" >
+             	<list>
+             	<value>Earth</value>
+             	 <value>Mars</value>
+             	 <value>Jupiter</value>
+             	  <value>Saturn</value> 	
+             	</list>
+             </property>
+   </bean>
+   
+     <bean id="innerPlanets"  class = "com.mytest.app.InnerPlanets">
+             <property name = "innerPlanetsNames" >
+             	<list>
+             	<value>Mercury</value>
+             	 <value>Venus</value>
+              	</list>
+             </property>
+   </bean>
+</beans>
